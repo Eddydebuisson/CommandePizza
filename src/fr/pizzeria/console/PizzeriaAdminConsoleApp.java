@@ -45,19 +45,22 @@ public class PizzeriaAdminConsoleApp {
 	 * @param a
 	 */
 	public static void ajoutPizza(String[][] a) {
+		System.out.println("Tapez 99 pour annuler");
 		System.out.println("Veuillez saisir le code");
 		String code = sc.next();
-		System.out.println("Veuillez saisir le nom (sans espace)");
-		String nom = sc.next();
-		System.out.println("Veuillez saisir le prix");
-		String prix = sc.next();
-		int i = 0;
-		for (String[] s : a) {
-			if (s != null && s[0] != null) {
-				i++;
+		if (!code.equals("99")) {
+			System.out.println("Veuillez saisir le nom (sans espace)");
+			String nom = sc.next();
+			System.out.println("Veuillez saisir le prix");
+			String prix = sc.next();
+			int i = 0;
+			for (String[] s : a) {
+				if (s != null && s[0] != null) {
+					i++;
+				}
 			}
+			a[i] = new String[] { Integer.toString(i), code, nom, prix };
 		}
-		a[i] = new String[] { Integer.toString(i), code, nom, prix };
 	}
 
 	/**
@@ -68,23 +71,26 @@ public class PizzeriaAdminConsoleApp {
 	 * @param b
 	 */
 	public static void modifPizza(String[][] a, String b) {
-
+		System.out.println("Tapez 99 pour annuler");
 		System.out.println("Veuillez saisir le code");
 		String code = sc.next();
-		System.out.println("Veuillez saisir le nom (sans espace)");
-		String nom = sc.next();
-		System.out.println("Veuillez saisir le prix");
-		String prix = sc.next();
-		int i = 0;
-		while (!a[i][1].equals(b)) {
+		if (!code.equals("99")) {
+			System.out.println("Veuillez saisir le nom (sans espace)");
+			String nom = sc.next();
+			System.out.println("Veuillez saisir le prix");
+			String prix = sc.next();
+			int i = 0;
+			while (!a[i][1].equals(b)) {
 
-			i++;
+				i++;
 
-		}
-		if (i != 100) {
-			a[i] = new String[] { Integer.toString(i), code, nom, prix };
-		} else {
-			System.out.println("404 PIZZA NOT FOUND");
+			}
+			if (i != 100) {
+				a[i] = new String[] { Integer.toString(i), code, nom, prix };
+			} else {
+				System.out.println("404 PIZZA NOT FOUND");
+			}
+
 		}
 	}
 
@@ -110,23 +116,23 @@ public class PizzeriaAdminConsoleApp {
 	 */
 	public static void supprimePizza(String[][] a) {
 		listeDesPizzas(a);
+		System.out.println("Tapez 99 pour annuler");
 		System.out.println("Veuillez choisir la pizzza à modifier");
 		String pizza = sc.next();
-		int i = 0;
-		while (!a[i][1].equals(pizza)) {
-			i++;
-			// System.out.println(i);
-		}
+		if (!pizza.equals("99")) {
+			int i = 0;
+			while (!a[i][1].equals(pizza)) {
+				i++;
+			}
 
-		while (a[i][0] != null) {
-			a[i][0] = a[i + 1][0];
-			a[i][1] = a[i + 1][1];
-			a[i][2] = a[i + 1][2];
-			a[i][3] = a[i + 1][3];
-			i++;
+			while (a[i][0] != null) {
+				a[i][0] = a[i + 1][0];
+				a[i][1] = a[i + 1][1];
+				a[i][2] = a[i + 1][2];
+				a[i][3] = a[i + 1][3];
+				i++;
+			}
 		}
-		// listeDesPizzas(a);
-
 	}
 
 	public static void main(String[] args) {
